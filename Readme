@@ -1,101 +1,102 @@
-README: |
-  # 🎨 Image Smoothing Filter UI
+# 🎨 Image Smoothing Filter UI
 
-  This project is a simple **client-side image smoothing filter tool** built with **pure HTML, CSS, and JavaScript** using the **Canvas API**.
+A simple **client-side image smoothing filter tool** built with **pure HTML, CSS, and JavaScript** using the **Canvas API**.
 
-  It demonstrates:
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
-  - Uploading and displaying images in the browser
-  - Accessing and manipulating pixel data with the Canvas API
-  - Applying a pixel neighborhood averaging (blur) filter with configurable kernel size
-  - Optional grayscale conversion before smoothing
-  - Displaying live pixel (R, G, B, A) values when hovering over the image
+## ✨ Features
 
-  ---
+- **📁 Image Upload** - Upload any image from your device
+- **🖼️ Original Display** - View the original image rendered on canvas
+- **⚫ Grayscale Option** - Convert to grayscale before smoothing
+- **🔧 Kernel Size** - Choose between 3×3 or 5×5 smoothing kernels
+- **✨ Smooth Filter** - Apply neighborhood averaging blur effect
+- **🎯 Pixel Inspector** - Hover to view real-time RGBA values
 
-  ## 📸 Features
+## 🚀 Quick Start
 
-  - **Image Upload:** Upload any image from your device
-  - **Original Image Display:** See the original image rendered on a canvas
-  - **Grayscale Option:** Convert the image to grayscale before applying the smoothing filter
-  - **Neighborhood Size:** Select either a 3×3 or 5×5 kernel for the smoothing filter
-  - **Smooth Image:** Apply the smoothing filter and view the output on a second canvas
-  - **Pixel Info on Hover:** Hover over the original image to view the RGBA values of the pixel under the cursor
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/image-smoothing-filter.git
+   cd image-smoothing-filter
+   ```
 
-  ---
+2. **Open in browser**
+   ```bash
+   open index.html
+   ```
 
-  ## 🚀 How to Run
+That's it! No build tools or server needed — runs entirely in the browser.
 
-  1. **Clone this repository**
+## 🛠️ Tech Stack
 
-     ```bash
-     git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-     cd YOUR_REPO_NAME
-     ```
+| Technology | Purpose |
+|------------|---------|
+| **HTML5** | Structure & Canvas element |
+| **Vanilla JS** | Core image processing logic |
+| **Canvas API** | Pixel manipulation & rendering |
+| **CSS3** | Modern styling & layout |
 
-  2. **Open `index.html`** in your web browser.
+## 🔬 How It Works
 
-  That’s it! No build tools or server needed — it runs entirely in the browser.
+### Image Processing Pipeline
+1. **Upload** → Uses `FileReader` API to load image data
+2. **Display** → Renders original image on canvas using `drawImage()`
+3. **Process** → Extracts pixel data with `getImageData()`
+4. **Filter** → Applies neighborhood averaging algorithm
+5. **Output** → Renders smoothed result to second canvas
 
-  ---
+### Smoothing Algorithm
+```javascript
+// Simplified smoothing logic
+for (each pixel) {
+    newValue = average(neighboringPixels);
+    outputPixel = newValue;
+}
+```
 
-  ## ⚙ Tech Stack
+## 📸 Screenshots
 
-  - **HTML5** – Structure
-  - **Vanilla JavaScript** – Core logic
-  - **Canvas API** – Pixel-level image processing and display
-  - **CSS** – Basic styling
+*Upload your screenshots here to showcase the UI*
 
-  ---
+## 🎯 Demo
 
-  ## 📚 How It Works
+Want to try it live? 
 
-  - **Image Upload:** Uses the `FileReader` API to load an image and draw it on a canvas.
-  - **Pixel Processing:** Uses `getImageData()` to access pixel data. If grayscale is selected, each pixel’s RGB values are averaged.
-  - **Smoothing Filter:** Applies a neighborhood average using a 3×3 or 5×5 kernel, then renders the smoothed image to another canvas.
-  - **Pixel Hover Info:** Tracks mouse position on the canvas and displays the real-time RGBA values of the hovered pixel.
+**Option 1: Local Testing**
+- Download and open `index.html` in any modern browser
 
-  ---
+**Option 2: GitHub Pages** *(if hosted)*
+- Visit: `https://YOUR_USERNAME.github.io/image-smoothing-filter`
 
-  ## ✏️ Author
+## 🤝 Contributing
 
-  This project was built as a hands-on UI coding assignment to demonstrate frontend development skills using only core web technologies.
+Contributions are welcome! Here's how you can help:
 
-  ---
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-  ## ✅ License
+## 📝 License
 
-  This project is **open source** — feel free to reuse it for learning or personal projects.
+This project is **open source** under the MIT License. Feel free to use it for learning or personal projects!
 
-  ---
+## 👨‍💻 Author
 
-  ## 📌 Live Demo (Optional)
+Built as a hands-on coding assignment to demonstrate frontend development skills using core web technologies.
 
-  Want to host it with GitHub Pages?
+---
 
-  1. Push your code to the `main` branch.
-  2. Go to: **Repository Settings → Pages → Source → Select `main` branch → `/ (root)`**
-  3. Share the link with others!
+### 🌟 Show Your Support
 
-  ---
+Give a ⭐ if this project helped you learn something new!
 
-  ## ✅ Where to Put This
+### 📞 Connect
 
-  1. Save this text as `README.md` in your project root folder.
-  2. Commit & push:
-
-     ```bash
-     git add README.md
-     git commit -m "Add project README"
-     git push
-     ```
-
-  🎉 That’s it — your GitHub repo now looks clean, complete, and professional!
-
-  ---
-
-  ## 📣 Want a Project Description?
-
-  If you'd like a short one-line project description to display under the repo title on GitHub, just say:
-
-  **Yes, add project description!** 🚀
+- 📧 Email: your.email@example.com
+- 💼 LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
+- 🐦 Twitter: [@yourhandle](https://twitter.com/yourhandle)
