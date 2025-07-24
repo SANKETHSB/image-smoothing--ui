@@ -1,87 +1,101 @@
-# Image Smoothing Filter UI
+README: |
+  # 🎨 Image Smoothing Filter UI
 
-This project is a simple *client-side image smoothing filter tool* built with *pure HTML, CSS, and JavaScript* using the *Canvas API*.
+  This project is a simple **client-side image smoothing filter tool** built with **pure HTML, CSS, and JavaScript** using the **Canvas API**.
 
-It demonstrates:
-- Uploading and displaying images in the browser
-- Accessing and manipulating pixel data with the Canvas API
-- Applying a pixel neighborhood averaging (blur) filter with configurable kernel size
-- Optional grayscale conversion before smoothing
-- Displaying live pixel (R,G,B,A) values when hovering over the image
+  It demonstrates:
 
----
+  - Uploading and displaying images in the browser
+  - Accessing and manipulating pixel data with the Canvas API
+  - Applying a pixel neighborhood averaging (blur) filter with configurable kernel size
+  - Optional grayscale conversion before smoothing
+  - Displaying live pixel (R, G, B, A) values when hovering over the image
 
-## 📸 *Features*
+  ---
 
-- *Image Upload:* Upload any image from your device.
-- *Original Image Display:* See the original image on a canvas.
-- *Grayscale Option:* Convert the image to grayscale before applying the smoothing filter.
-- *Neighborhood Size:* Select a 3×3 or 5×5 neighborhood for the smoothing filter.
-- *Smooth Image:* Apply the filter and display the processed image on a second canvas.
-- *Pixel Info on Hover:* Hover over the original image to see the RGBA values of the pixel under the cursor.
+  ## 📸 Features
 
----
+  - **Image Upload:** Upload any image from your device
+  - **Original Image Display:** See the original image rendered on a canvas
+  - **Grayscale Option:** Convert the image to grayscale before applying the smoothing filter
+  - **Neighborhood Size:** Select either a 3×3 or 5×5 kernel for the smoothing filter
+  - **Smooth Image:** Apply the smoothing filter and view the output on a second canvas
+  - **Pixel Info on Hover:** Hover over the original image to view the RGBA values of the pixel under the cursor
 
-## 🚀 *How to Run*
+  ---
 
-1. *Clone this repo*
+  ## 🚀 How to Run
 
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   cd YOUR_REPO_NAME
+  1. **Clone this repository**
 
-step2 :- Open index.html in your web browser.
+     ```bash
+     git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+     cd YOUR_REPO_NAME
+     ```
 
-That’s it! No build tools or server needed — it runs fully in the browser.
+  2. **Open `index.html`** in your web browser.
 
-⚙ Tech Used
-HTML5 for structure
+  That’s it! No build tools or server needed — it runs entirely in the browser.
 
-Vanilla JavaScript for logic
+  ---
 
-Canvas API for pixel data processing and display
+  ## ⚙ Tech Stack
 
-CSS for minimal styling
+  - **HTML5** – Structure
+  - **Vanilla JavaScript** – Core logic
+  - **Canvas API** – Pixel-level image processing and display
+  - **CSS** – Basic styling
 
-📚 How It Works
-Image Upload: Uses the FileReader API to load an image and draw it on the canvas.
+  ---
 
-Pixel Processing: Gets pixel data with getImageData(). If grayscale is selected, each pixel’s RGB is averaged into one channel.
+  ## 📚 How It Works
 
-Neighborhood Blur: Uses nested loops to average surrounding pixels (3×3 or 5×5 neighborhood) and writes the new data to a separate canvas.
+  - **Image Upload:** Uses the `FileReader` API to load an image and draw it on a canvas.
+  - **Pixel Processing:** Uses `getImageData()` to access pixel data. If grayscale is selected, each pixel’s RGB values are averaged.
+  - **Smoothing Filter:** Applies a neighborhood average using a 3×3 or 5×5 kernel, then renders the smoothed image to another canvas.
+  - **Pixel Hover Info:** Tracks mouse position on the canvas and displays the real-time RGBA values of the hovered pixel.
 
-Hover Pixel Info: On mouse move, reads the pixel under the cursor and shows its RGBA value live.
+  ---
 
-✏ Author
-This project was built as a hands-on UI coding assignment for demonstrating frontend coding skills.
+  ## ✏️ Author
 
-✅ License
-This project is open source — feel free to reuse for learning and personal projects.
+  This project was built as a hands-on UI coding assignment to demonstrate frontend development skills using only core web technologies.
 
-📌 Live Demo (Optional)
-If you want, you can host this with GitHub Pages for quick demo:
+  ---
 
-Push to main branch.
+  ## ✅ License
 
-Go to Repo Settings → Pages → Source → main branch → /root.
+  This project is **open source** — feel free to reuse it for learning or personal projects.
 
-Share the link!
+  ---
 
-Enjoy! 🚀
+  ## 📌 Live Demo (Optional)
 
-yaml
-Copy code
+  Want to host it with GitHub Pages?
 
----
+  1. Push your code to the `main` branch.
+  2. Go to: **Repository Settings → Pages → Source → Select `main` branch → `/ (root)`**
+  3. Share the link with others!
 
-## ✅ *Where to put it*
+  ---
 
-1️⃣ Save the text above as **README.md** in your repo folder.  
-2️⃣ Commit & push:
-```bash
-git add README.md
-git commit -m "Add README"
-git push
-🎉 That’s it — now your GitHub looks complete, clear, and professional!
-If you’d like, I can help you write a one-line project description for your repo too — just say “Yes, add project description!” 🚀
+  ## ✅ Where to Put This
 
+  1. Save this text as `README.md` in your project root folder.
+  2. Commit & push:
+
+     ```bash
+     git add README.md
+     git commit -m "Add project README"
+     git push
+     ```
+
+  🎉 That’s it — your GitHub repo now looks clean, complete, and professional!
+
+  ---
+
+  ## 📣 Want a Project Description?
+
+  If you'd like a short one-line project description to display under the repo title on GitHub, just say:
+
+  **Yes, add project description!** 🚀
