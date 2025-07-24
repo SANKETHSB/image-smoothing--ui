@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Smoothing Filter UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    canvas {
+      border: 1px solid #333;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Smoothing Filter UI</h1>
+
+  <!-- Image Upload -->
+  <input type="file" id="upload" accept="image/*" />
+
+  <br /><br />
+
+  <!-- Options -->
+  <label>
+    <input type="checkbox" id="grayscale" />
+    Convert to Grayscale First
+  </label>
+
+  <label>
+    Neighborhood Size:
+    <select id="neighborhood">
+      <option value="3">3x3</option>
+      <option value="5">5x5</option>
+    </select>
+  </label>
+
+  <button id="smoothBtn">Smooth Image</button>
+
+  <br /><br />
+
+  <!-- Canvases -->
+  <div>
+    <h3>Original Image</h3>
+    <canvas id="original"></canvas>
+    <p id="pixelInfo">Hover to see pixel RGBA</p>
+  </div>
+
+  <div>
+    <h3>Smoothed Image</h3>
+    <canvas id="smoothed"></canvas>
+  </div>
+
+  <script>
+    const upload = document.getElementById('upload');
+    const grayscaleCheckbox = document.getElementById('grayscale');
+    const neighborhoodSelect = document.getElementById('neighborhood');
+    const smoothBtn = document.getElementById('smoothBtn');
+
+    const originalCanvas = document.getElementById('original');
+    const smoothedCanvas = document.getElementById('smoothed');
+    const pixelInfo = document.getElementById('pixelInfo');
+
+    const originalCtx = originalCanvas.getContext('2d');
+    const smoothedCtx = smoothedCanvas.getContext('2d');
+
+    let imgWidth, imgHeight;
+
+    upload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const img = new Image();
+        img.onload = () => {
+          imgWidth = img.width;
+          imgHeight = img.height;
+          originalCanvas.width = imgWidth;
+          originalCanvas.height = imgHeight;
+          smoothedCanvas.width = imgWidth;
+          smoothedCanvas.height = imgHeight;
+
+          originalCtx.drawImage(img, 0, 0);
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    smoothBtn.addEventListener('click', () => {
+      const imageData = originalCtx.getImageData(0, 0, imgWidth, imgHeight);
+      const data = imageData.data;
+
+      // Grayscale option
+      if (grayscaleCheckbox.checked) {
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+          data[i] = gray;
+          data[i + 1] = gray;
+          data[i + 2] = gray;
+          // Alpha remains unchanged
+        }
+      }
+
+      // Copy to new image
+      const output = originalCtx.createImageData(imgWidth, imgHeight);
+      const outputData = output.data;
+
+      const size = parseInt(neighborhoodSelect.value);
+      const half = Math.floor(size / 2);
+
+      for (let y = 0; y < imgHeight; y++) {
+        for (let x = 0; x < imgWidth; x++) {
+          let r = 0, g = 0, b = 0, a = 0, count = 0;
+
+          for (let dy = -half; dy <= half; dy++) {
+            for (let dx = -half; dx <= half; dx++) {
+              const nx = x + dx;
+              const ny = y + dy;
+              if (nx >= 0 && ny >= 0 && nx < imgWidth && ny < imgHeight) {
+                const idx = (ny * imgWidth + nx) * 4;
+                r += data[idx];
+                g += data[idx + 1];
+                b += data[idx + 2];
+                a += data[idx + 3];
+                count++;
+              }
+            }
+          }
+
+          const i = (y * imgWidth + x) * 4;
+          outputData[i] = r / count;
+          outputData[i + 1] = g / count;
+          outputData[i + 2] = b / count;
+          outputData[i + 3] = a / count;
+        }
+      }
+
+      smoothedCtx.putImageData(output, 0, 0);
+    });
+
+    // Show pixel RGBA on hover
+    originalCanvas.addEventListener('mousemove', (e) => {
+      const rect = originalCanvas.getBoundingClientRect();
+      const x = Math.floor(e.clientX - rect.left);
+      const y = Math.floor(e.clientY - rect.top);
+
+      if (x >= 0 && y >= 0 && x < imgWidth && y < imgHeight) {
+        const pixel = originalCtx.getImageData(x, y, 1, 1).data;
+        pixelInfo.textContent = X:${x} Y:${y} → R:${pixel[0]} G:${pixel[1]} B:${pixel[2]} A:${pixel[3]};
+      }
+    });
+  </script>
+</body>
+</html>
